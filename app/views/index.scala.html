@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AngularJS & Play2	</title>
+         <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")"> 
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/main.css")"> 
+</head>
+<body>
+
+  <div ng-app="myApp">
+    <div ng-controller="AvengersCtrl">
+     <!-- <input type="text" ng-mode"search.$"> -->
+      <div ng-click = "select($event)">
+      <table>
+        <tr>
+            <td ng-repeat = "id in colorsRow" style ="background-color:{{id}}" data="{{id}}"></td>
+        
+        </tr>
+         <tr>
+            <td ng-repeat = "id in colorsSrow" style ="background-color:{{id}}" data="{{id}}"></td>
+      
+        </tr>
+          <tr>
+            <td ng-repeat = "id in colorsRow" style ="background-color:{{id}}" data="{{id}}"></td>
+        
+        </tr>
+           <tr>
+            <td ng-repeat = "id in colorsSrow" style ="background-color:{{id}}" data="{{id}}"></td>
+        
+        </tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+<script src="@routes.Assets.at("app.js")" type="text/javascript"></script>
+</body>
+</html>
