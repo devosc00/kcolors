@@ -10,6 +10,7 @@ import play.api.libs.concurrent.Execution.Implicits._
 import play.api.Play.current
 
 import scala.concurrent.duration._
+import scala.util.Random
 
 
 object ConsLogger {
@@ -43,8 +44,10 @@ object MessageHandler {
     logActor
   }
 
-  def join(username:Int):scala.concurrent.Future[(Iteratee[JsValue,_],Enumerator[JsValue])] = {
+  def join():scala.concurrent.Future[(Iteratee[JsValue,_],Enumerator[JsValue])] = {
 
+    println("join in")
+    val username = new Random().nextInt()
     (default ? Join(username)).map {
       case Connected(enumerator) =>
         val iteratee = Iteratee.foreach[JsValue] { event =>
@@ -55,7 +58,7 @@ object MessageHandler {
         (iteratee,enumerator)
 
       case CannotConnect(error) =>
-
+        println("cannotConnect in" + error)
         // Connection error
 
         // A finished Iteratee sending EOF
@@ -79,12 +82,13 @@ class MessageHandler extends Actor {
 
   override def receive: Receive = {
     case Join(username) => {
+      println(username)
 
     }
 
     case Event(username, event) => {
       def getCommand(command: String) = (event \ command).as[String]
-
+      println(username, event)
       getCommand("command") match {
         case ("green") => println("green")
       }
